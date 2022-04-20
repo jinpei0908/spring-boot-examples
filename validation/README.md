@@ -2,7 +2,7 @@
 
 ## What's this
 
-spring bootのvalidationのサンプルをまとめたリポジトリです。fieldのvalidationは`BindingResult`でfield同士の関係のvalidationは独自validatorを作って対応してます。
+spring bootのvalidationのサンプルをまとめたリポジトリです。
 
 ## Usage
 
@@ -11,7 +11,7 @@ appを起動後、以下のリクエストを投げるとエラーが返って�
 ### field validationの確認
 
 ```bash
-curl -s 'http://localhost:8080/v1/users?id=0&name=&age=-1' | jq
+curl -s 'http://localhost:8080/v1/modelattribute-and-bindingresult?id=0&name=&age=-1' | jq
 ```
 ```
 {
@@ -22,7 +22,7 @@ curl -s 'http://localhost:8080/v1/users?id=0&name=&age=-1' | jq
 ### field validationとfield同士の関係のvalidation
 
 ```bash
-curl -s 'http://localhost:8080/v1/complicated-users?id=0' | jq
+curl -s 'http://localhost:8080/v1/modelattribute-and-custom-validator?id=0' | jq
 ```
 ```
 {

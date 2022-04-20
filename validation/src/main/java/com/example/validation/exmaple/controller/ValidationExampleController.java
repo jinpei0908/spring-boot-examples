@@ -28,7 +28,7 @@ public class ValidationExampleController {
     private final ValidationErrorMessageFactory errorMessageFactory;
     private final UserValidator userValidator;
 
-    @GetMapping(value = "users")
+    @GetMapping(value = "modelattribute-and-bindingresult")
     public User getUsers(@ModelAttribute @Validated User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             var message = errorMessageFactory.create(bindingResult);
@@ -37,7 +37,7 @@ public class ValidationExampleController {
         return new User();
     }
 
-    @GetMapping(value = "complicated-users")
+    @GetMapping(value = "modelattribute-and-custom-validator")
     public User getUser(@ModelAttribute User user) {
         userValidator.validate(user);
         return new User();
