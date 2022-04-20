@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.validation.ConstraintViolationException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(IllegalArgumentException.class)
-    public Error handleControllerException(IllegalArgumentException ex) {
+    @ExceptionHandler(ConstraintViolationException.class)
+    public Error handleConstraintViolationException(ConstraintViolationException ex) {
         return Error.builder()
                 .errorMessage(ex.getMessage())
                 .build();

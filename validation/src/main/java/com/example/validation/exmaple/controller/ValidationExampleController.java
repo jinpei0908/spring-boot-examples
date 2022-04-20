@@ -26,7 +26,7 @@ public class ValidationExampleController {
     public User getUsers(@ModelAttribute @Validated User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             var message = errorMessageFactory.create(bindingResult);
-            throw new IllegalArgumentException(message);
+            throw new ConstraintViolationException(message, null);
         }
         return new User();
     }

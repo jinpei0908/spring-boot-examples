@@ -4,6 +4,7 @@ import com.example.validation.exmaple.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class UserValidator {
         }
 
         if (!violations.isEmpty()) {
-            throw new IllegalArgumentException(stringBuilder.toString());
+            throw new ConstraintViolationException(stringBuilder.toString(), null);
         }
     }
 }
