@@ -49,4 +49,13 @@ public class ValidationExampleController {
             @PathVariable @Pattern(regexp = "[A-z]+") String name) {
         return new User();
     }
+
+    @GetMapping(value = "validate-by-assert-true")
+    public String calculateBmi(@ModelAttribute @Validated User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            var message = errorMessageFactory.create(bindingResult);
+            throw new ConstraintViolationException(message, null);
+        }
+        return "BMIが正常です";
+    }
 }

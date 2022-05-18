@@ -2,6 +2,7 @@ package com.example.validation.exmaple.domain;
 
 import lombok.Data;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
@@ -20,4 +21,16 @@ public class User {
 
     @PositiveOrZero
     private Integer age;
+
+    @Positive
+    private Double height;
+
+    @Positive
+    private Double weight;
+
+    @AssertTrue(message = "BMIが異常です")
+    public boolean isAppropriateBmi() {
+        var bmi = weight / (height * height);
+        return 18.5 <= bmi && bmi < 25;
+    }
 }
